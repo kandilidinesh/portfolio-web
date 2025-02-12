@@ -1,9 +1,12 @@
+/* Import Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Poppins:wght@300;400;600&family=Raleway:wght@300;400;600&display=swap");
 
+/* Tailwind CSS Directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Variables */
 :root {
     --background: #ffffff;
     --foreground: #171717;
@@ -12,6 +15,7 @@
     --futuristic-font: "Poppins", sans-serif;
 }
 
+/* Dark Mode Variables */
 @media (prefers-color-scheme: dark) {
     :root {
         --background: #0a0a0a;
@@ -19,6 +23,7 @@
     }
 }
 
+/* Global Styles */
 body {
     color: var(--foreground);
     background: var(--background);
@@ -29,11 +34,15 @@ body {
 html,
 body {
     overflow-x: hidden; /* Prevent horizontal scroll */
-    overflow-x: hidden; /* Prevents horizontal scrolling */
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none; /* For IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
 }
 
+html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Grid Container */
 .grid-container {
     overflow: hidden;
     display: flex;
@@ -41,10 +50,7 @@ body {
     justify-content: center;
 }
 
-html::-webkit-scrollbar {
-    display: none; /* For Chrome, Safari, and Opera */
-}
-/* Buttons & Headings */
+/* Headings */
 h1,
 h2,
 h3,
@@ -55,10 +61,18 @@ h6 {
     font-weight: 700;
 }
 
+/* Navbar Link Base Styles (merged declarations) */
 nav a {
     font-family: var(--futuristic-font);
     font-weight: 500;
     text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px;
+    overflow: hidden;
+    font-size: 15px;
+    color: white;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Navbar Styling */
@@ -80,19 +94,7 @@ nav.scrolled {
     box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
 }
 
-/* Futuristic Hover Animation */
-nav a {
-    position: relative;
-    display: inline-block;
-    padding: 5px 10px;
-    overflow: hidden;
-    text-transform: uppercase;
-    font-size: 15px;
-    font-weight: 500;
-    color: white;
-    transition: all 0.3s ease-in-out;
-}
-
+/* Navbar Link Hover Effects */
 nav a::before {
     content: "";
     position: absolute;
@@ -109,17 +111,15 @@ nav a:hover::before {
     left: 0;
 }
 
-/* Glow Effect */
 nav a:hover {
     text-shadow: 0 0 8px var(--neon-blue);
 }
 
-/* Depth Effect */
 nav a:active {
     transform: scale(0.95);
 }
 
-/* Removing Navbar Bottom Border */
+/* Navbar Background Overlay */
 nav::before {
     content: "";
     position: absolute;
@@ -159,19 +159,17 @@ nav:hover {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
-    max-height: 100%; /* Ensures no unnecessary scrolling */
+    max-height: 100%; /* Prevent unnecessary scrolling */
     display: flex;
     flex-direction: column;
 }
 
-/* 3D Hover Effect */
 .glass-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4),
         0 6px 12px rgba(0, 255, 255, 0.3) inset;
 }
 
-/* Neon Glow Effect */
 .glass-card::before {
     content: "";
     position: absolute;
@@ -205,22 +203,62 @@ nav:hover {
     box-shadow: 0 0 12px rgba(0, 255, 255, 0.9);
 }
 
+/* Typography Adjustments */
 h1 {
-    font-size: 2rem; /* Reduce the page title size */
+    font-size: 2rem; /* Page title size */
 }
 
 h2 {
-    font-size: 1.25rem; /* Reduce the project title size */
+    font-size: 1.25rem; /* Project title size */
 }
 
 p {
-    font-size: 0.875rem; /* Slightly reduce project description */
+    font-size: 0.875rem; /* Project description size */
 }
 
+/* Projects Grid */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 16px;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+/* Hexagon Styling */
+.hexagon {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    margin: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
+}
+
+.hexagon-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.hexagon:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.8), 0 0 30px rgba(0, 255, 204, 0.6);
+}
+
+.hexagon:hover .hexagon-inner {
+    backdrop-filter: blur(20px);
 }
