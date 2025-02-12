@@ -5,6 +5,7 @@
 :root {
     --background: #ffffff;
     --foreground: #171717;
+    --neon-blue: #00eaff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,8 +27,22 @@ body {
     overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
-:root {
-    --neon-blue: #00eaff;
+/* Navbar Styling */
+nav {
+    height: 60px;
+    position: fixed;
+    width: 100%;
+    z-index: 50;
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(20, 20, 20, 0.2);
+    box-shadow: none;
+}
+
+nav.scrolled {
+    background: rgba(20, 20, 20, 0.7);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
 }
 
 /* Futuristic Hover Animation */
@@ -36,6 +51,11 @@ nav a {
     display: inline-block;
     padding: 5px 10px;
     overflow: hidden;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    transition: all 0.3s ease-in-out;
 }
 
 nav a::before {
@@ -62,4 +82,32 @@ nav a:hover {
 /* Depth Effect */
 nav a:active {
     transform: scale(0.95);
+}
+
+/* Removing Navbar Bottom Border */
+nav::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(20, 20, 20, 0.2);
+    z-index: -1;
+}
+
+nav:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+}
+
+/* Logo Styling */
+.nav-logo {
+    width: 45px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-logo:hover {
+    transform: scale(1.1);
 }

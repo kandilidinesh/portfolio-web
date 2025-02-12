@@ -54,7 +54,8 @@ export default function Projects() {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center px-8 pt-20">
+        <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center px-8 pt-32">
+            {" "}
             <h1 className="text-4xl font-bold mb-6">Projects</h1>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {projects.map((project, index) => (
