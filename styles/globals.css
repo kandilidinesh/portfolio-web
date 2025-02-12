@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Poppins:wght@300;400;600&family=Raleway:wght@300;400;600&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,6 +8,8 @@
     --background: #ffffff;
     --foreground: #171717;
     --neon-blue: #00eaff;
+    --primary-font: "Poppins", sans-serif;
+    --futuristic-font: "Poppins", sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,13 +22,30 @@
 body {
     color: var(--foreground);
     background: var(--background);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--primary-font);
 }
 
 /* Prevent unnecessary scroll */
 html,
 body {
     overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Buttons & Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--futuristic-font);
+    font-weight: 700;
+}
+
+nav a {
+    font-family: var(--futuristic-font);
+    font-weight: 500;
+    text-transform: uppercase;
 }
 
 /* Navbar Styling */
@@ -38,6 +59,7 @@ nav {
     -webkit-backdrop-filter: blur(10px);
     background: rgba(20, 20, 20, 0.2);
     box-shadow: none;
+    font-family: var(--futuristic-font);
 }
 
 nav.scrolled {
@@ -110,4 +132,59 @@ nav:hover {
 
 .nav-logo:hover {
     transform: scale(1.1);
+}
+
+/* Glassmorphism Card Styling */
+.glass-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 25px rgba(0, 255, 255, 0.2),
+        0 4px 6px rgba(0, 255, 255, 0.15) inset;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 3D Hover Effect */
+.glass-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 255, 255, 0.4),
+        0 6px 12px rgba(0, 255, 255, 0.3) inset;
+}
+
+/* Neon Glow Effect */
+.glass-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 255, 255, 0.3),
+        rgba(0, 255, 255, 0)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.glass-card:hover::before {
+    opacity: 1;
+}
+
+/* Tech Badge Styling */
+.tech-badge {
+    background: rgba(0, 255, 255, 0.3);
+    border-radius: 5px;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+    transition: all 0.3s ease-in-out;
+}
+
+.tech-badge:hover {
+    background: rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.9);
 }

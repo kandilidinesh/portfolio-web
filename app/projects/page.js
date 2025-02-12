@@ -7,6 +7,20 @@ export const metadata = {
 export default function Projects() {
     const projects = [
         {
+            title: "Digital Banking Portal",
+            description:
+                "Developing and maintaining scalable backend APIs using NestJS and Typescript.",
+            technologies: [
+                "NestJS",
+                "Typescript",
+                "Redis",
+                "JWT Authentication",
+                "PostgreSQL",
+                "AWS S3"
+            ],
+            link: "#" // Private project
+        },
+        {
             title: "Welbilt Kitchen Connect IoT Dashboard",
             description:
                 "Developed high-performance REST APIs for seamless third-party integrations and optimized data flow.",
@@ -55,13 +69,12 @@ export default function Projects() {
 
     return (
         <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center px-8 pt-32">
-            {" "}
             <h1 className="text-4xl font-bold mb-6">Projects</h1>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {projects.map((project, index) => (
                     <div
                         key={index}
-                        className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition-transform">
+                        className="glass-card p-6 rounded-lg shadow-lg hover:scale-105 transition-transform">
                         <h2 className="text-xl font-bold">{project.title}</h2>
                         <p className="mt-2 text-gray-300">
                             {project.description}
@@ -70,7 +83,7 @@ export default function Projects() {
                             {project.technologies.map((tech, i) => (
                                 <span
                                     key={i}
-                                    className="bg-blue-500 px-3 py-1 text-sm rounded-md">
+                                    className="tech-badge px-3 py-1 text-sm rounded-md">
                                     {tech}
                                 </span>
                             ))}
