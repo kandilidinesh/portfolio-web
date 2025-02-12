@@ -1,10 +1,18 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
     return (
         <nav className="bg-gray-900 text-white py-4 fixed top-0 w-full shadow-md">
             <div className="container mx-auto flex justify-between items-center px-6">
-                <h1 className="text-2xl font-bold">Dinesh K N</h1>
+                <Link href="/">
+                    <Image
+                        src="/bg_removed.png" 
+                        alt="Dinesh K N Logo"
+                        width={50} 
+                        height={20} 
+                    />
+                </Link>
                 <div className="space-x-6">
                     <Link
                         href="/"

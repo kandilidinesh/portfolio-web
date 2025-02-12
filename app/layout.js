@@ -2,6 +2,12 @@ import "@/styles/globals.css";
 import Navbar from "@/components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
 
+export const metadata = {
+    icons: {
+        icon: "/bg_removed.png" // This points to your favicon inside the public folder
+    }
+};
+
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
