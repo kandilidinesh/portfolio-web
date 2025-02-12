@@ -68,8 +68,6 @@ export default function Projects() {
 
     return (
         <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center px-4 md:px-16 pt-20">
-            <h1 className="text-4xl font-bold mb-8">Projects</h1>
-
             <div className="w-full max-w-[1400px] mx-auto">
                 {/* First Row: 3 projects */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -2,9 +2,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -34,18 +36,25 @@ export default function Navbar() {
                 {/* Navigation Links */}
                 <div className="flex space-x-8">
                     {["Home", "About", "Projects", "Contact"].map(
-                        (item, index) => (
-                            <Link
-                                key={index}
-                                href={
-                                    item === "Home"
-                                        ? "/"
-                                        : `/${item.toLowerCase()}`
-                                }
-                                className="group">
-                                {item}
-                            </Link>
-                        )
+                        (item, index) => {
+                            const itemPath =
+                                item === "Home"
+                                    ? "/"
+                                    : `/${item.toLowerCase()}`;
+                            const isActive = pathname === itemPath;
+                            return (
+                                <Link
+                                    key={index}
+                                    href={itemPath}
+                                    className={`group transition duration-300 ${
+                                        isActive
+                                            ? "text-[#00ffc3]"
+                                            : "text-gray-300"
+                                    } hover:text-[#00ffc3]`}>
+                                    {item}
+                                </Link>
+                            );
+                        }
                     )}
                 </div>
             </div>
