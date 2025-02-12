@@ -44,7 +44,7 @@ export default function AboutMe() {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center px-8 pt-20">
+        <div className="h-screen bg-gray-900 text-white flex flex-col items-center px-8 pt-20 overflow-hidden">
             <motion.h1
                 className="text-4xl md:text-5xl font-bold text-center neon-text"
                 initial={{ opacity: 0, y: -20 }}
@@ -53,17 +53,17 @@ export default function AboutMe() {
                 Dinesh K N
             </motion.h1>
             <motion.p
-                className="text-lg text-gray-400 mt-2 text-center"
+                className="text-lg text-gray-400 mt-1 text-center"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 1 }}>
                 Backend Engineer | Cloud Architect | DevOps Enthusiast
             </motion.p>
 
-            <h2 className="text-2xl font-semibold text-center neon-text mt-12">
+            {/* Career Timeline */}
+            <h2 className="text-2xl font-semibold text-center neon-text mt-8">
                 Career Timeline
             </h2>
-
             {/* Career Timeline with Hexagons */}
             <div className="mt-6 w-full flex flex-wrap justify-center items-center relative">
                 {careerTimeline.map((item, index) => (
@@ -96,14 +96,14 @@ export default function AboutMe() {
                 ))}
             </div>
 
-            {/* Tech Stack Showcase (Unchanged) */}
-            <div className="mt-12 w-full max-w-4xl text-center">
+            {/* Tech Stack Showcase */}
+            <div className="mt-10 w-full max-w-4xl text-center">
                 <h2 className="text-2xl font-semibold neon-text">Tech Stack</h2>
-                <div className="mt-6 flex flex-wrap justify-center gap-6">
+                <div className="mt-6 flex flex-nowrap justify-center gap-6 px-10 py-6 overflow-x-auto overflow-hidden">
                     {techStack.map((tech, index) => (
                         <motion.div
                             key={index}
-                            className="flex flex-col items-center p-4 bg-gray-800 rounded-lg shadow-md hover:shadow-cyan-400 transition-all"
+                            className="flex flex-col items-center p-4 w-48 bg-gray-800 rounded-lg shadow-md hover:shadow-cyan-400 transition-all"
                             whileHover={{ scale: 1.1 }}>
                             <img
                                 src={tech.icon}
