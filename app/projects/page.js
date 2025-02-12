@@ -1,3 +1,9 @@
+export const metadata = {
+    title: "Dinesh K N | Projects",
+    description:
+        "Explore projects built by Dinesh K N, including API development, cloud computing, and microservices architecture."
+};
+
 export default function Projects() {
     const projects = [
         {

@@ -1,3 +1,9 @@
+export const metadata = {
+    title: "Dinesh K N | About",
+    description:
+        "Learn more about Dinesh K N, a Backend Engineer with expertise in Node.js, AWS, and GraphQL."
+};
+
 export default function About() {
     return (
         <div className="min-h-[calc(100vh-4rem)] flex flex-col items-center justify-center px-8">
