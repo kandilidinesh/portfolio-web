@@ -1,0 +1,11 @@
+@import "./styles/base.css";
+@import "./styles/navbar.css";
+@import "./styles/buttons.css";
+@import "./styles/cards.css";
+@import "./styles/typography.css";
+@import "./styles/layouts.css";
+
+/* Tailwind Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
