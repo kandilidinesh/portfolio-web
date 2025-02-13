@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import "./styles.css"; // Importing the external CSS file
 
-// Generate random star positions
 const generateStars = (count) => {
+    if (typeof window === "undefined") return []; // ✅ Prevents SSR errors
+
     return Array.from({ length: count }).map(() => ({
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
