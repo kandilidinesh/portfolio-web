@@ -65,10 +65,10 @@ export default function Projects() {
 
     return (
         <>
-            <title>Dinesh K N | Contact</title>
+            <title>Dinesh K N | Projects</title>
             <meta
                 name="description"
-                content="Get in touch with Dinesh K N via email, LinkedIn, or GitHub."
+                content="Projects showcase"
             />
             <motion.div
                 className="min-h-screen bg-gray-900 text-white flex flex-col items-center px-4 md:px-16 pt-20"

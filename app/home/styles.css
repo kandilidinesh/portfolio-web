@@ -1,0 +1,86 @@
+/* Base Container */
+.home-container {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Starry Background */
+.starry-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Hero Title */
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #00eaff;
+    text-align: center;
+    z-index: 10;
+}
+
+/* Hero Subtitle */
+.hero-subtitle {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    z-index: 10;
+}
+
+/* Mouse Glow Effect */
+.mouse-glow {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(
+        circle,
+        rgba(0, 255, 255, 0.3),
+        rgba(0, 255, 255, 0)
+    );
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(40px);
+    z-index: 9999;
+    transition: transform 0.05s linear;
+}
+
+/* Overlay Effect */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 0;
+}
+
+/* Thunder Icon */
+.thunder-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    animation: thunder-flash 0.8s infinite alternate;
+}
+
+@keyframes thunder-flash {
+    0% {
+        stroke: #00eaff;
+        transform: scale(1);
+    }
+    100% {
+        stroke: #ffcc00;
+        transform: scale(1.2);
+    }
+}
