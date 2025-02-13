@@ -45,42 +45,97 @@ export default function Contact() {
 
             {/* Page Container */}
             <div className="h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white flex flex-col justify-center items-center px-8 pt-20 relative">
-                {/* Page Title */}
+                {/* Page Title with Futuristic Animated Dot */}
                 <motion.h1
-                    className="text-4xl font-bold mb-6 neon-text"
+                    className="text-4xl font-bold mb-6 neon-text flex items-center"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}>
-                    Let&apos;s Connect!
+                    Let&apos;s Connect
+                    <motion.span
+                        className="ml-1"
+                        animate={{
+                            opacity: [0.3, 1, 0.3], // Fading effect
+                            scale: [1, 1.3, 1], // Pulsating effect
+                            y: [0, -2, 0], // Slight floating movement
+                            color: ["#00E4FF", "#007BFF", "#9B51E0"] // Neon color transition
+                        }}
+                        transition={{
+                            repeat: Infinity, // Infinite loop
+                            duration: 1.5, // Smooth transitions
+                            ease: "easeInOut"
+                        }}>
+                        .
+                    </motion.span>
                 </motion.h1>
 
-                {/* Floating Social Icons */}
-                <div className="flex space-x-8 text-3xl mb-6">
+                {/* Floating Social Icons with Glow & Floating Effect */}
+                <motion.div
+                    className="flex space-x-10 mb-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}>
                     <motion.a
                         href="https://www.linkedin.com/in/kandili/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        whileHover={{ scale: 1.2, color: "#0A66C2" }}
-                        transition={{ type: "spring", stiffness: 200 }}>
-                        <FaLinkedin className="text-blue-400 hover:text-blue-500 transition-all" />
+                        className="text-4xl text-blue-400 transition-all"
+                        whileHover={{
+                            scale: 1.2,
+                            textShadow: "0px 0px 12px rgba(10, 102, 194, 0.8)"
+                        }}
+                        whileTap={{ scale: 0.9 }}
+                        animate={{
+                            y: [0, -5, 0], // Floating effect
+                            transition: {
+                                repeat: Infinity,
+                                duration: 2,
+                                ease: "easeInOut"
+                            }
+                        }}>
+                        <FaLinkedin />
                     </motion.a>
 
                     <motion.a
                         href="https://github.com/kandilidinesh"
                         target="_blank"
                         rel="noopener noreferrer"
-                        whileHover={{ scale: 1.2, color: "#ffffff" }}
-                        transition={{ type: "spring", stiffness: 200 }}>
-                        <FaGithub className="text-gray-300 hover:text-white transition-all" />
+                        className="text-4xl text-gray-300 transition-all"
+                        whileHover={{
+                            scale: 1.2,
+                            textShadow: "0px 0px 12px rgba(255, 255, 255, 0.8)"
+                        }}
+                        whileTap={{ scale: 0.9 }}
+                        animate={{
+                            y: [0, -5, 0],
+                            transition: {
+                                repeat: Infinity,
+                                duration: 2,
+                                ease: "easeInOut"
+                            }
+                        }}>
+                        <FaGithub />
                     </motion.a>
 
                     <motion.a
                         href="mailto:kandilindinesh@gmail.com"
-                        whileHover={{ scale: 1.2, color: "#FF5733" }}
-                        transition={{ type: "spring", stiffness: 200 }}>
-                        <FaEnvelope className="text-red-400 hover:text-red-500 transition-all" />
+                        className="text-4xl text-red-400 transition-all"
+                        whileHover={{
+                            scale: 1.2,
+                            textShadow: "0px 0px 12px rgba(255, 87, 51, 0.8)"
+                        }}
+                        whileTap={{ scale: 0.9 }}
+                        animate={{
+                            y: [0, -5, 0],
+                            transition: {
+                                repeat: Infinity,
+                                duration: 2,
+                                ease: "easeInOut"
+                            }
+                        }}>
+                        <FaEnvelope />
                     </motion.a>
-                </div>
+                </motion.div>
 
                 {/* Contact Form */}
                 <motion.form
