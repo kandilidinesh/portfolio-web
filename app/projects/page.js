@@ -1,8 +1,5 @@
-export const metadata = {
-    title: "Dinesh K N | Projects",
-    description:
-        "Explore projects built by Dinesh K N, including API development, cloud computing, and microservices architecture."
-};
+"use client";
+import { motion } from "framer-motion";
 
 export default function Projects() {
     const projects = [
@@ -67,70 +64,113 @@ export default function Projects() {
     ];
 
     return (
-        <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center px-4 md:px-16 pt-20">
-            <div className="w-full max-w-[1400px] mx-auto">
-                {/* First Row: 3 projects */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {projects.slice(0, 3).map((project, index) => (
-                        <div
-                            key={index}
-                            className="glass-card p-6 rounded-lg shadow-lg hover:scale-105 transition-transform">
-                            <div className="max-w-lg">
-                                <h2 className="text-xl font-bold">
-                                    {project.title}
-                                </h2>
-                                <p className="mt-2 text-gray-300">
-                                    {project.description}
-                                </p>
-                                <div className="mt-3 flex flex-wrap gap-2">
-                                    {project.technologies.map((tech, i) => (
-                                        <span
-                                            key={i}
-                                            className="tech-badge px-3 py-1 text-sm rounded-md">
-                                            {tech}
-                                        </span>
-                                    ))}
+        <>
+            <title>Dinesh K N | Contact</title>
+            <meta
+                name="description"
+                content="Get in touch with Dinesh K N via email, LinkedIn, or GitHub."
+            />
+            <motion.div
+                className="min-h-screen bg-gray-900 text-white flex flex-col items-center px-4 md:px-16 pt-20"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}>
+                <div className="w-full max-w-[1400px] mx-auto">
+                    {/* First Row: 3 projects */}
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                        initial="hidden"
+                        animate="visible"
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: {
+                                opacity: 1,
+                                transition: { staggerChildren: 0.2 }
+                            }
+                        }}>
+                        {projects.slice(0, 3).map((project, index) => (
+                            <motion.div
+                                key={index}
+                                className="glass-card p-6 rounded-lg shadow-lg transition-transform"
+                                variants={{
+                                    hidden: { opacity: 0, y: 50 },
+                                    visible: { opacity: 1, y: 0 }
+                                }}
+                                transition={{ duration: 0.6, ease: "easeOut" }}
+                                whileHover={{ scale: 1.05 }}>
+                                <div className="max-w-lg">
+                                    <h2 className="text-xl font-bold">
+                                        {project.title}
+                                    </h2>
+                                    <p className="mt-2 text-gray-300">
+                                        {project.description}
+                                    </p>
+                                    <div className="mt-3 flex flex-wrap gap-2">
+                                        {project.technologies.map((tech, i) => (
+                                            <span
+                                                key={i}
+                                                className="tech-badge px-3 py-1 text-sm rounded-md">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <span className="block mt-4 text-gray-500">
+                                        <strong>{project.company}</strong> |{" "}
+                                        {project.timeline}
+                                    </span>
                                 </div>
-                                <span className="block mt-4 text-gray-500">
-                                    <strong>{project.company}</strong> |{" "}
-                                    {project.timeline}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
 
-                {/* Second Row: 2 projects centered */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center mx-auto mt-8 w-full md:max-w-[900px]">
-                    {projects.slice(3, 5).map((project, index) => (
-                        <div
-                            key={index}
-                            className="glass-card p-6 rounded-lg shadow-lg hover:scale-105 transition-transform">
-                            <div className="max-w-lg">
-                                <h2 className="text-xl font-bold">
-                                    {project.title}
-                                </h2>
-                                <p className="mt-2 text-gray-300">
-                                    {project.description}
-                                </p>
-                                <div className="mt-3 flex flex-wrap gap-2">
-                                    {project.technologies.map((tech, i) => (
-                                        <span
-                                            key={i}
-                                            className="tech-badge px-3 py-1 text-sm rounded-md">
-                                            {tech}
-                                        </span>
-                                    ))}
+                    {/* Second Row: 2 projects centered */}
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center mx-auto mt-8 w-full md:max-w-[900px]"
+                        initial="hidden"
+                        animate="visible"
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: {
+                                opacity: 1,
+                                transition: { staggerChildren: 0.2 }
+                            }
+                        }}>
+                        {projects.slice(3, 5).map((project, index) => (
+                            <motion.div
+                                key={index}
+                                className="glass-card p-6 rounded-lg shadow-lg transition-transform"
+                                variants={{
+                                    hidden: { opacity: 0, y: 50 },
+                                    visible: { opacity: 1, y: 0 }
+                                }}
+                                transition={{ duration: 0.6, ease: "easeOut" }}
+                                whileHover={{ scale: 1.05 }}>
+                                <div className="max-w-lg">
+                                    <h2 className="text-xl font-bold">
+                                        {project.title}
+                                    </h2>
+                                    <p className="mt-2 text-gray-300">
+                                        {project.description}
+                                    </p>
+                                    <div className="mt-3 flex flex-wrap gap-2">
+                                        {project.technologies.map((tech, i) => (
+                                            <span
+                                                key={i}
+                                                className="tech-badge px-3 py-1 text-sm rounded-md">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <span className="block mt-4 text-gray-500">
+                                        <strong>{project.company}</strong> |{" "}
+                                        {project.timeline}
+                                    </span>
                                 </div>
-                                <span className="block mt-4 text-gray-500">
-                                    <strong>{project.company}</strong> |{" "}
-                                    {project.timeline}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
+                            </motion.div>
+                        ))}
+                    </motion.div>
                 </div>
-            </div>
-        </div>
+            </motion.div>
+        </>
     );
 }
