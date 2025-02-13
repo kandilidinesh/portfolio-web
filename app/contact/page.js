@@ -1,5 +1,7 @@
-"use client"; // Required for handling form submission in Next.js app router
+"use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -26,61 +28,80 @@ export default function Contact() {
         if (res.ok) {
             setStatus("success");
             setFormData({ name: "", email: "", message: "" });
+            setTimeout(() => setStatus(null), 3000); // Auto-hide message
         } else {
             setStatus("error");
+            setTimeout(() => setStatus(null), 3000); // Auto-hide message
         }
     };
 
     return (
         <>
-            <>
-                <title>Dinesh K N | Contact</title>
-                <meta
-                    name="description"
-                    content="Get in touch with Dinesh K N via email, LinkedIn, or GitHub."
-                />
-            </>
-            <div className="h-screen bg-gray-900 text-white flex flex-col justify-center items-center px-8">
-                <h1 className="text-4xl font-bold mb-6">Contact Me</h1>
+            <title>Dinesh K N | Contact</title>
+            <meta
+                name="description"
+                content="Get in touch with Dinesh K N via email, LinkedIn, or GitHub."
+            />
 
-                {/* Social Links */}
-                <div className="flex space-x-6">
-                    <a
+            {/* Page Container */}
+            <div className="h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white flex flex-col justify-center items-center px-8 pt-20 relative">
+                {/* Page Title */}
+                <motion.h1
+                    className="text-4xl font-bold mb-6 neon-text"
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1 }}>
+                    Let&apos;s Connect!
+                </motion.h1>
+
+                {/* Floating Social Icons */}
+                <div className="flex space-x-8 text-3xl mb-6">
+                    <motion.a
                         href="https://www.linkedin.com/in/kandili/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-400 hover:underline">
-                        LinkedIn
-                    </a>
-                    <a
-                        href="https://github.com/dineshkn"
+                        whileHover={{ scale: 1.2, color: "#0A66C2" }}
+                        transition={{ type: "spring", stiffness: 200 }}>
+                        <FaLinkedin className="text-blue-400 hover:text-blue-500 transition-all" />
+                    </motion.a>
+
+                    <motion.a
+                        href="https://github.com/kandilidinesh"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-400 hover:underline">
-                        GitHub
-                    </a>
-                    <a
+                        whileHover={{ scale: 1.2, color: "#ffffff" }}
+                        transition={{ type: "spring", stiffness: 200 }}>
+                        <FaGithub className="text-gray-300 hover:text-white transition-all" />
+                    </motion.a>
+
+                    <motion.a
                         href="mailto:kandilindinesh@gmail.com"
-                        className="text-blue-400 hover:underline">
-                        Email
-                    </a>
+                        whileHover={{ scale: 1.2, color: "#FF5733" }}
+                        transition={{ type: "spring", stiffness: 200 }}>
+                        <FaEnvelope className="text-red-400 hover:text-red-500 transition-all" />
+                    </motion.a>
                 </div>
 
                 {/* Contact Form */}
-                <form
+                <motion.form
                     onSubmit={handleSubmit}
-                    className="mt-8 w-full max-w-lg bg-gray-800 p-6 rounded-lg shadow-lg">
-                    <label className="block text-sm font-bold">Name</label>
+                    className="mt-6 w-full max-w-lg bg-black bg-opacity-50 p-8 rounded-lg shadow-lg backdrop-blur-md"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}>
+                    <label className="block text-sm font-bold text-gray-300">
+                        Name
+                    </label>
                     <input
                         type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full p-2 rounded mt-1 bg-gray-700 text-white border border-gray-600 focus:outline-none"
+                        className="w-full p-3 rounded mt-2 bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                     />
 
-                    <label className="block text-sm font-bold mt-4">
+                    <label className="block text-sm font-bold mt-4 text-gray-300">
                         Email
                     </label>
                     <input
@@ -89,10 +110,10 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full p-2 rounded mt-1 bg-gray-700 text-white border border-gray-600 focus:outline-none"
+                        className="w-full p-3 rounded mt-2 bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                     />
 
-                    <label className="block text-sm font-bold mt-4">
+                    <label className="block text-sm font-bold mt-4 text-gray-300">
                         Message
                     </label>
                     <textarea
@@ -100,27 +121,42 @@ export default function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className="w-full p-2 rounded mt-1 bg-gray-700 text-white border border-gray-600 focus:outline-none h-32"
+                        className="w-full p-3 rounded mt-2 bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-400 h-32"
                     />
 
-                    <button
+                    {/* Submit Button with Animation */}
+                    <motion.button
                         type="submit"
-                        className="mt-4 w-full bg-blue-500 hover:bg-blue-600 py-2 rounded text-white font-bold">
+                        className="mt-6 w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 py-3 rounded text-white font-bold text-lg shadow-md transition-all"
+                        whileHover={{
+                            scale: 1.05,
+                            boxShadow: "0px 0px 15px rgba(0, 255, 255, 0.8)"
+                        }}>
                         {status === "loading" ? "Sending..." : "Send Message"}
-                    </button>
+                    </motion.button>
+                </motion.form>
 
-                    {/* Success & Error Messages */}
-                    {status === "success" && (
-                        <p className="text-green-400 mt-2">
-                            Message sent successfully!
-                        </p>
-                    )}
-                    {status === "error" && (
-                        <p className="text-red-400 mt-2">
-                            Something went wrong. Try again.
-                        </p>
-                    )}
-                </form>
+                {/* Floating Success/Error Messages (Moved Outside the Form) */}
+                {status === "success" && (
+                    <motion.div
+                        className="fixed bottom-5 right-5 bg-green-500 text-white py-3 px-6 rounded-lg shadow-lg"
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 50 }}
+                        transition={{ duration: 0.5 }}>
+                        Message sent successfully! 🎉
+                    </motion.div>
+                )}
+                {status === "error" && (
+                    <motion.div
+                        className="fixed bottom-5 right-5 bg-red-500 text-white py-3 px-6 rounded-lg shadow-lg"
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 50 }}
+                        transition={{ duration: 0.5 }}>
+                        Something went wrong! ❌
+                    </motion.div>
+                )}
             </div>
         </>
     );
