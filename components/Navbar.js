@@ -25,7 +25,7 @@ export default function Navbar() {
                 {/* Logo */}
                 <Link href="/" className="flex items-center">
                     <Image
-                        src="/bg_removed.png"
+                        src="/icons/logo.png"
                         alt="Dinesh K N Logo"
                         width={45}
                         height={25}

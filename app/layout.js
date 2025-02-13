@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
     icons: {
-        icon: "/bg_removed.png" // This points to your favicon inside the public folder
+        icon: "/favico.svg" // This points to your favicon inside the public folder
     }
 };
 
