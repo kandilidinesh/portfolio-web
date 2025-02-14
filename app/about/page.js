@@ -40,11 +40,12 @@ export default function AboutMe() {
         { name: "Express.js", icon: "/icons/express.svg", level: "Advanced" },
         { name: "AWS", icon: "/icons/aws.svg", level: "Advanced" },
         { name: "GraphQL", icon: "/icons/graphql.svg", level: "Advanced" },
+        { name: "Azure", icon: "/icons/azure.svg", level: "Intermediate" },
         { name: "NestJS", icon: "/icons/nestjs.svg", level: "Intermediate" },
         {
             name: "TypeScript",
             icon: "/icons/typescript.svg",
-            level: "Intermediate"
+            level: "Beginner"
         }
     ];
 
@@ -105,15 +106,15 @@ export default function AboutMe() {
                 </div>
 
                 {/* Tech Stack Showcase */}
-                <div className="mt-10 w-full max-w-4xl text-center">
+                <div className="mt-10 w-full text-center">
                     <h2 className="text-2xl font-semibold neon-text">
                         Tech Stack
                     </h2>
-                    <div className="mt-6 flex flex-nowrap justify-center gap-6 px-10 py-6 overflow-x-auto overflow-hidden">
+                    <div className="mt-3 flex flex-wrap justify-center gap-6 items-center relative">
                         {techStack.map((tech, index) => (
                             <motion.div
                                 key={index}
-                                className="flex flex-col items-center p-4 w-48 bg-gray-800 rounded-lg shadow-md hover:shadow-cyan-400 transition-all"
+                                className="flex flex-col items-center p-3 w-32 bg-gray-800 rounded-lg shadow-md hover:shadow-cyan-400 transition-all"
                                 whileHover={{ scale: 1.1 }}>
                                 <img
                                     src={tech.icon}

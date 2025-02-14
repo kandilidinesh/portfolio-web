@@ -8,12 +8,12 @@ export default function Projects() {
             description:
                 "Developing and maintaining scalable backend APIs using NestJS and Typescript.",
             technologies: [
-                "NestJS",
                 "Typescript",
+                "NestJS",
                 "Redis",
-                "JWT Authentication",
-                "PostgreSQL",
-                "AWS S3"
+                "JWT",
+                "Jest",
+                "GCP"
             ],
             company: "Candescent",
             timeline: "Sep 2024 – Present"
@@ -23,11 +23,13 @@ export default function Projects() {
             description:
                 "Developed high-performance REST APIs for seamless third-party integrations and optimized data flow.",
             technologies: [
+                "JavaScript",
                 "Node.js",
-                "AWS Lambda",
+                "Express.js",
                 "API Gateway",
                 "IoT Core",
-                "PostgreSQL"
+                "MySQL",
+                "AWS"
             ],
             company: "HCL Technologies",
             timeline: "Apr 2022 – Sep 2024"
@@ -36,7 +38,14 @@ export default function Projects() {
             title: "HRMS & Recruitment Management System",
             description:
                 "Designed GraphQL APIs for HRMS & RMS platforms, improving system scalability and efficiency.",
-            technologies: ["GraphQL", "Node.js", "Azure Cloud", "PostgreSQL"],
+            technologies: [
+                "JavaScript",
+                "Node.js",
+                "Express.js",
+                "GraphQL",
+                "PostgreSQL",
+                "Azure"
+            ],
             company: "Wiznet India Pvt Ltd",
             timeline: "Jul 2020 – Mar 2022"
         },
@@ -45,10 +54,11 @@ export default function Projects() {
             description:
                 "Developed a mobile app using Machine Learning models for image background removal.",
             technologies: [
-                "React Native",
+                "JavaScript",
                 "Python",
                 "Machine Learning",
-                "Android & iOS"
+                "Android - Java",
+                "iOS - Objective C"
             ],
             company: "Iolite Technologies Pvt Ltd",
             timeline: "Jun 2019 – Jun 2020"
@@ -57,7 +67,12 @@ export default function Projects() {
             title: "Research & Proof of Concept ML Projects",
             description:
                 "Implemented multiple Machine Learning use cases for Research & Proof of Concept purposes.",
-            technologies: ["Machine Learning", "Python"],
+            technologies: [
+                "JavaScript",
+                "Python",
+                "Machine Learning",
+                "Deep Learning"
+            ],
             company: "Microhard Infotech LLC",
             timeline: "Jun 2018 – Jun 2019"
         }
@@ -66,10 +81,7 @@ export default function Projects() {
     return (
         <>
             <title>Dinesh K N | Projects</title>
-            <meta
-                name="description"
-                content="Projects showcase"
-            />
+            <meta name="description" content="Projects showcase" />
             <motion.div
                 className="min-h-screen bg-gray-900 text-white flex flex-col items-center px-4 md:px-16 pt-20"
                 initial={{ opacity: 0 }}
