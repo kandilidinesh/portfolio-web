@@ -31,11 +31,16 @@ export default function AboutMe() {
     ];
 
     const techStack = [
-        { name: "JavaScript", icon: "/icons/javascript.svg", level: "Expert" },
+        {
+            name: "JavaScript",
+            icon: "/icons/javascript.svg",
+            level: "Advanced"
+        },
         { name: "Node.js", icon: "/icons/nodejs.svg", level: "Advanced" },
-        { name: "NestJS", icon: "/icons/nestjs.svg", level: "Advanced" },
-        { name: "AWS", icon: "/icons/aws.svg", level: "Intermediate" },
+        { name: "Express.js", icon: "/icons/express.svg", level: "Advanced" },
+        { name: "AWS", icon: "/icons/aws.svg", level: "Advanced" },
         { name: "GraphQL", icon: "/icons/graphql.svg", level: "Advanced" },
+        { name: "NestJS", icon: "/icons/nestjs.svg", level: "Intermediate" },
         {
             name: "TypeScript",
             icon: "/icons/typescript.svg",
