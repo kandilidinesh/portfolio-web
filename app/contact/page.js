@@ -11,51 +11,27 @@ export default function Contact() {
         message: ""
     });
     const [status, setStatus] = useState(null);
-    const [lightTrails, setLightTrails] = useState([]);
     const [particles, setParticles] = useState([]);
 
+    // Detect Mobile
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
     useEffect(() => {
-        const handleMouseMove = (e) => {
-            setLightTrails((prev) => [
-                ...prev.slice(-15),
-                {
-                    x: e.clientX,
-                    y: e.clientY,
-                    id: Math.random()
-                }
-            ]);
-        };
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, []);
+        // Reduce particles on mobile
+        const totalParticles = isMobile ? 15 : 40;
 
-    useEffect(() => {
-        // Generate a large number of particles instantly at the start
-        const initialParticles = Array.from({ length: 50 }).map(() => ({
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            size: Math.random() * 6 + 2,
-            opacity: Math.random() * 0.6 + 0.4, // Make them more visible initially
-            id: Math.random()
-        }));
+        const initialParticles = Array.from({ length: totalParticles }).map(
+            () => ({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                size: isMobile ? Math.random() * 2 + 1 : Math.random() * 5 + 2,
+                opacity: Math.random() * 0.5 + 0.3,
+                id: Math.random()
+            })
+        );
         setParticles(initialParticles);
 
-        // Gradual addition of particles after initial load
-        const particleInterval = setInterval(() => {
-            setParticles((prev) => [
-                ...prev.slice(-100), // Keep max 100 particles
-                {
-                    x: Math.random() * window.innerWidth,
-                    y: Math.random() * window.innerHeight,
-                    size: Math.random() * 6 + 2,
-                    opacity: Math.random() * 0.6 + 0.2,
-                    id: Math.random()
-                }
-            ]);
-        }, 800); // Reduced interval to speed up appearance
-
-        return () => clearInterval(particleInterval);
-    }, []);
+        return () => setParticles([]);
+    }, [isMobile]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -92,25 +68,25 @@ export default function Contact() {
             />
             <Toaster position="bottom-right" reverseOrder={false} />
 
-            {/* Animated Background */}
+            {/* Background */}
             <div className="absolute inset-0 pointer-events-none bg-black overflow-hidden">
-                {/* Futuristic Wave Effect */}
+                {/* Soft Glowing Effect */}
                 <motion.div
                     className="absolute inset-0 opacity-30"
                     style={{
                         background:
                             "radial-gradient(circle, rgba(0, 200, 255, 0.3) 10%, rgba(0,0,0,0) 80%)",
-                        filter: "blur(80px)"
+                        filter: "blur(60px)"
                     }}
-                    animate={{ scale: [1, 1.1, 1] }}
+                    animate={{ scale: [1, 1.05, 1] }}
                     transition={{
-                        duration: 10,
+                        duration: 8,
                         repeat: Infinity,
                         ease: "easeInOut"
                     }}
                 />
 
-                {/* Floating Glowing Particles */}
+                {/* Floating Particles */}
                 {particles.map((particle) => (
                     <motion.div
                         key={particle.id}
@@ -123,19 +99,14 @@ export default function Contact() {
                             opacity: particle.opacity,
                             boxShadow: `0 0 ${
                                 particle.size * 2
-                            }px rgba(0, 255, 255, 0.5)`
+                            }px rgba(0, 255, 255, 0.3)`
                         }}
                         animate={{
-                            y: [particle.y, particle.y - 100, particle.y], // Moves up & down
-                            x: [
-                                particle.x,
-                                particle.x + (Math.random() * 10 - 5),
-                                particle.x
-                            ], // Slight sideways drift
-                            opacity: [0.3, 0.7, 0.3] // Glowing effect
+                            y: [particle.y, particle.y - 40, particle.y],
+                            opacity: [0.3, 0.6, 0.3]
                         }}
                         transition={{
-                            duration: Math.random() * 6 + 4, // Random duration for natural movement
+                            duration: Math.random() * 6 + 2,
                             repeat: Infinity,
                             ease: "easeInOut"
                         }}
@@ -143,113 +114,88 @@ export default function Contact() {
                 ))}
             </div>
 
-            {/* Light Trails */}
-            {lightTrails.map((trail) => (
-                <motion.div
-                    key={trail.id}
-                    className="absolute w-3 h-3 bg-cyan-400 rounded-full opacity-50 pointer-events-none"
-                    style={{
-                        left: `${trail.x}px`,
-                        top: `${trail.y}px`
-                    }}
-                    initial={{ scale: 0.3 }}
-                    animate={{ opacity: [0.8, 0.3, 0], scale: [1, 0.6, 0] }}
-                    transition={{ duration: 0.4 }}
-                />
-            ))}
-
+            {/* Contact Form */}
             <div className="h-screen flex flex-col justify-center items-center px-8 pt-20 relative text-white">
                 <motion.h1
-                    className="text-4xl font-bold mb-6 neon-text flex items-center"
+                    className="text-4xl font-bold mb-6 flex items-center neon-text"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}>
                     Let&apos;s Connect.
                 </motion.h1>
 
+                {/* Social Links */}
                 <motion.div
-                    className="flex space-x-10 mb-6"
+                    className="flex space-x-8 mb-6"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}>
-                    <motion.a
+                    <a
                         href="https://www.linkedin.com/in/kandili/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-4xl text-blue-400 transition-all"
-                        whileHover={{
-                            scale: 1.2,
-                            textShadow: "0px 0px 12px rgba(10, 102, 194, 0.8)"
-                        }}>
+                        className="text-4xl text-blue-400 transition-all hover:scale-110">
                         <FaLinkedin />
-                    </motion.a>
-                    <motion.a
+                    </a>
+                    <a
                         href="https://github.com/kandilidinesh"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-4xl text-gray-300 transition-all"
-                        whileHover={{
-                            scale: 1.2,
-                            textShadow: "0px 0px 12px rgba(255, 255, 255, 0.8)"
-                        }}>
+                        className="text-4xl text-gray-300 transition-all hover:scale-110">
                         <FaGithub />
-                    </motion.a>
-                    <motion.a
+                    </a>
+                    <a
                         href="mailto:kandilindinesh@gmail.com"
-                        className="text-4xl text-red-400 transition-all"
-                        whileHover={{
-                            scale: 1.2,
-                            textShadow: "0px 0px 12px rgba(255, 87, 51, 0.8)"
-                        }}>
+                        className="text-4xl text-red-400 transition-all hover:scale-110">
                         <FaEnvelope />
-                    </motion.a>
+                    </a>
                 </motion.div>
 
+                {/* Restored Original Form with Cyberpunk Neon Glow */}
                 <motion.form
                     onSubmit={handleSubmit}
-                    className="mt-6 w-full max-w-lg bg-black bg-opacity-50 p-8 rounded-lg shadow-lg backdrop-blur-md"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}>
-                    <label className="block text-sm font-bold text-gray-300">
-                        Name
-                    </label>
+                    className="bg-opacity-50 p-8 rounded-lg w-full max-w-lg shadow-lg backdrop-blur-md bg-white/5 transition-all duration-300">
                     <input
-                        type="text"
                         name="name"
+                        type="text"
+                        placeholder="Name"
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full p-3 rounded mt-2 bg-gray-800 text-white border border-gray-600 focus:ring-cyan-400"
+                        className="w-full p-3 mb-4 bg-transparent border-b border-cyan-700 text-white placeholder-gray-600 
+                   outline-none focus:ring-0 focus:border-cyan-300 transition-all 
+                   duration-300 focus:shadow-[0px_0px_10px_#00ffc3]"
                     />
 
-                    <label className="block text-sm font-bold mt-4 text-gray-300">
-                        Email
-                    </label>
                     <input
-                        type="email"
                         name="email"
+                        type="email"
+                        placeholder="Email"
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full p-3 rounded mt-2 bg-gray-800 text-white border border-gray-600 focus:ring-cyan-400"
+                        className="w-full p-3 mb-4 bg-transparent border-b border-cyan-700 text-white placeholder-gray-600 
+                   outline-none focus:ring-0 focus:border-cyan-300 transition-all 
+                   duration-300 focus:shadow-[0px_0px_10px_#00ffc3]"
                     />
 
-                    <label className="block text-sm font-bold mt-4 text-gray-300">
-                        Message
-                    </label>
                     <textarea
                         name="message"
+                        placeholder="Message"
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className="w-full p-3 h-32 rounded mt-2 bg-gray-800 text-white border border-gray-600 focus:ring-cyan-400"></textarea>
+                        className="w-full p-3 mb-4 bg-transparent border-b border-cyan-700 text-white placeholder-gray-600 h-32 resize-none 
+                   outline-none focus:ring-0 focus:border-cyan-300 transition-all 
+                   duration-300 focus:shadow-[0px_0px_10px_#00ffc3]"
+                    />
 
-                    <motion.button
+                    <button
                         type="submit"
-                        className="mt-6 w-full bg-gradient-to-r from-cyan-500 to-blue-500 py-3 rounded text-white font-bold text-lg shadow-md transition-all">
+                        className="w-full bg-cyan-600 text-white py-3 rounded-md transition-all duration-300 
+                   hover:opacity-90 focus:shadow-[0px_0px_25px_#00ffc3]">
                         {status === "loading" ? "Sending..." : "Send Message"}
-                    </motion.button>
+                    </button>
                 </motion.form>
             </div>
         </>
