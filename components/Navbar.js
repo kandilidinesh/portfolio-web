@@ -54,7 +54,8 @@ export default function Navbar() {
                                         isActive
                                             ? "text-[#00ffc3]"
                                             : "text-gray-300"
-                                    } hover:text-[#00ffc3] relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[#00ffc3] after:bottom-[-5px] after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300`}>
+                                    } hover:text-[#00ffc3] relative 
+    hover:shadow-[0_0_10px_#00ffc3] hover:brightness-125`}>
                                     {item}
                                 </Link>
                             );
