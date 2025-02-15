@@ -70,7 +70,7 @@ export default function AboutMe() {
                     Career Timeline
                 </h2>
 
-                {/* 🔹 Scrollable Career Timeline for Mobile (FIXED ALIGNMENT) */}
+                {/* 🔹 Scrollable Career Timeline for Mobile (FIXED ALIGNMENT & BIGGER HEXAGONS) */}
                 <div className="mt-6 w-full overflow-x-auto px-2 md:px-0">
                     <div className="flex flex-nowrap justify-start md:justify-center gap-6 items-center pl-4 md:pl-0">
                         {careerTimeline.map((item, index) => (
@@ -83,16 +83,16 @@ export default function AboutMe() {
                                     delay: index * 0.3,
                                     duration: 0.8
                                 }}>
-                                {/* Hexagon for Career Timeline */}
-                                <div className="hexagon w-28 h-32 md:w-40 md:h-44 flex-shrink-0">
+                                {/* 🔷 Increased Hexagon Size for Mobile */}
+                                <div className="hexagon w-32 h-36 md:w-40 md:h-44 flex-shrink-0">
                                     <div className="hexagon-inner flex flex-col items-center justify-center text-center px-2">
-                                        <h3 className="text-xs md:text-sm font-semibold">
+                                        <h3 className="text-xs md:text-sm font-semibold leading-tight">
                                             {item.role}
                                         </h3>
-                                        <p className="text-gray-300 text-xs md:text-sm">
+                                        <p className="text-gray-300 text-xs md:text-sm leading-tight">
                                             {item.company}
                                         </p>
-                                        <span className="text-xs md:text-sm text-gray-500">
+                                        <span className="text-xs md:text-sm text-gray-500 leading-tight">
                                             {item.year}
                                         </span>
                                     </div>
