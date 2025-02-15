@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
 import { toast, Toaster } from "react-hot-toast";
@@ -11,27 +11,6 @@ export default function Contact() {
         message: ""
     });
     const [status, setStatus] = useState(null);
-    const [particles, setParticles] = useState([]);
-
-    // Detect Mobile
-    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
-    useEffect(() => {
-        // Reduce particles on mobile
-        const totalParticles = isMobile ? 15 : 40;
-
-        const initialParticles = Array.from({ length: totalParticles }).map(
-            () => ({
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                size: isMobile ? Math.random() * 2 + 1 : Math.random() * 5 + 2,
-                opacity: Math.random() * 0.5 + 0.3,
-                id: Math.random()
-            })
-        );
-        setParticles(initialParticles);
-
-        return () => setParticles([]);
-    }, [isMobile]);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -67,83 +46,32 @@ export default function Contact() {
                 content="Get in touch with Dinesh K N via email, LinkedIn, or GitHub."
             />
             <Toaster position="bottom-right" reverseOrder={false} />
+            {/* Cyberpunk Grid Background */}
 
-            {/* Background */}
-            <div className="absolute top-0 left-0 w-full min-h-screen pointer-events-none bg-black overflow-hidden">
-                {/* Soft Glowing Effect */}
-                <motion.div
-                    className="absolute inset-0 opacity-30"
-                    style={{
-                        background:
-                            "radial-gradient(circle, rgba(0, 200, 255, 0.3) 10%, rgba(0,0,0,0) 80%)",
-                        filter: "blur(60px)"
-                    }}
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{
-                        duration: 8,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }}
-                />
+            <div className="fixed top-0 left-0 w-full min-h-screen h-full bg-[#0d0d0d]">    
+                {/* Subtle Radial Glow */}
+                <div className="absolute inset-0 w-full h-full opacity-25 bg-[radial-gradient(circle,rgba(0,255,255,0.3)_0%,rgba(0,0,0,0.1)_80%)]"></div>
 
-                {/* Floating Particles */}
-                {particles.map((particle) => (
-                    <motion.div
-                        key={particle.id}
-                        className="absolute bg-cyan-400 rounded-full pointer-events-none"
-                        style={{
-                            left: `${particle.x}px`,
-                            top: `${particle.y}px`,
-                            width: `${particle.size}px`,
-                            height: `${particle.size}px`,
-                            opacity: particle.opacity,
-                            boxShadow: `0 0 ${
-                                particle.size * 2
-                            }px rgba(0, 255, 255, 0.3)`
-                        }}
-                        animate={{
-                            y: [
-                                particle.y,
-                                particle.y - (isMobile ? 20 : 40),
-                                particle.y
-                            ], // Reduce movement on mobile
-                            opacity: [0.3, 0.6, 0.3]
-                        }}
-                        transition={{
-                            duration: isMobile
-                                ? Math.random() * 4 + 2
-                                : Math.random() * 6 + 2, // Faster duration for mobile
-                            repeat: Infinity,
-                            ease: "easeInOut"
-                        }}
-                    />
-                ))}
+                {/* CSS-Based Grid Pattern (Replaces Missing SVG) */}
+                <div className="absolute inset-0 w-full h-full opacity-15 bg-[linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
             </div>
-
             {/* Contact Form */}
             <div className="min-h-screen flex flex-col justify-center items-center px-8 pt-20 relative text-white">
-                {" "}
                 <motion.h1
                     className="text-4xl font-bold mb-6 flex items-center neon-text"
                     initial={{ opacity: 0, y: -15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        duration: isMobile ? 1.2 : 0.8, // Smoother transition for mobile
-                        ease: "easeOut"
-                    }}
-                    style={{ willChange: "transform, opacity" }} // Optimized for performance
-                >
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    style={{ willChange: "transform, opacity" }}>
                     Let&apos;s Connect
                 </motion.h1>
+
                 {/* Social Links */}
                 <motion.div
                     className="flex space-x-8 mb-6"
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{
-                        duration: isMobile ? 1.1 : 0.7, // Make animation slightly longer on mobile
-                        ease: "easeOut"
-                    }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
                     style={{ willChange: "transform, opacity" }}>
                     <a
                         href="https://www.linkedin.com/in/kandili/"
@@ -165,10 +93,11 @@ export default function Contact() {
                         <FaEnvelope />
                     </a>
                 </motion.div>
-                {/* Restored Original Form with Cyberpunk Neon Glow */}
+
+                {/* Contact Form with Glass Effect */}
                 <motion.form
                     onSubmit={handleSubmit}
-                    className="bg-opacity-50 p-8 rounded-lg w-full max-w-lg shadow-lg backdrop-blur-md bg-white/5 transition-all duration-300">
+                    className="bg-opacity-50 p-8 rounded-lg w-full max-w-lg shadow-lg backdrop-blur-md border border-cyan-400/20 bg-white/5 transition-all duration-300">
                     <input
                         name="name"
                         type="text"
