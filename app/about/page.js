@@ -42,18 +42,14 @@ export default function AboutMe() {
         { name: "GraphQL", icon: "/icons/graphql.svg", level: "Advanced" },
         { name: "Azure", icon: "/icons/azure.svg", level: "Intermediate" },
         { name: "NestJS", icon: "/icons/nestjs.svg", level: "Intermediate" },
-        {
-            name: "TypeScript",
-            icon: "/icons/typescript.svg",
-            level: "Beginner"
-        }
+        { name: "TypeScript", icon: "/icons/typescript.svg", level: "Beginner" }
     ];
 
     return (
         <>
             <title>Dinesh K N | About</title>
             <meta name="description" content="About myself" />
-            <div className="h-screen bg-gray-900 text-white flex flex-col items-center px-8 pt-20 overflow-hidden">
+            <div className="h-auto min-h-screen bg-gray-900 text-white flex flex-col items-center px-4 md:px-8 pt-20 overflow-hidden">
                 <motion.h1
                     className="text-4xl md:text-5xl font-bold text-center neon-text"
                     initial={{ opacity: 0, y: -20 }}
@@ -69,59 +65,62 @@ export default function AboutMe() {
                     Backend Engineer | Cloud Architect | DevOps Enthusiast
                 </motion.p>
 
-                {/* Career Timeline */}
+                {/* 🔹 Career Timeline Title */}
                 <h2 className="text-2xl font-semibold text-center neon-text mt-8">
                     Career Timeline
                 </h2>
-                {/* Career Timeline with Hexagons */}
-                <div className="mt-6 w-full flex flex-wrap justify-center items-center relative">
-                    {careerTimeline.map((item, index) => (
-                        <motion.div
-                            key={index}
-                            className="relative flex justify-center items-center"
-                            initial={{ opacity: 0, y: -50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.3, duration: 0.8 }}>
-                            {/* Hexagon for Career Timeline */}
-                            <div className="hexagon">
-                                <div className="hexagon-inner">
-                                    <div className="flex flex-col items-center justify-center text-center px-4">
-                                        {/* Role in one line */}
-                                        <h3 className="text-sm font-semibold">
+
+                {/* 🔹 Scrollable Career Timeline for Mobile (FIXED ALIGNMENT) */}
+                <div className="mt-6 w-full overflow-x-auto px-2 md:px-0">
+                    <div className="flex flex-nowrap justify-start md:justify-center gap-6 items-center pl-4 md:pl-0">
+                        {careerTimeline.map((item, index) => (
+                            <motion.div
+                                key={index}
+                                className="relative flex justify-center items-center shrink-0"
+                                initial={{ opacity: 0, y: -50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{
+                                    delay: index * 0.3,
+                                    duration: 0.8
+                                }}>
+                                {/* Hexagon for Career Timeline */}
+                                <div className="hexagon w-28 h-32 md:w-40 md:h-44 flex-shrink-0">
+                                    <div className="hexagon-inner flex flex-col items-center justify-center text-center px-2">
+                                        <h3 className="text-xs md:text-sm font-semibold">
                                             {item.role}
                                         </h3>
-                                        {/* Company name in another line */}
-                                        <p className="text-gray-300 text-sm">
+                                        <p className="text-gray-300 text-xs md:text-sm">
                                             {item.company}
                                         </p>
-                                        {/* Duration in another line */}
-                                        <span className="text-sm text-gray-500">
+                                        <span className="text-xs md:text-sm text-gray-500">
                                             {item.year}
                                         </span>
                                     </div>
                                 </div>
-                            </div>
-                        </motion.div>
-                    ))}
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Tech Stack Showcase */}
+                {/* 🔹 Restoring Perfect Tech Stack Design */}
                 <div className="mt-10 w-full text-center">
                     <h2 className="text-2xl font-semibold neon-text">
                         Tech Stack
                     </h2>
-                    <div className="mt-3 flex flex-wrap justify-center gap-6 items-center relative">
+                    <div className="mt-3 flex flex-wrap justify-center gap-6 items-center">
                         {techStack.map((tech, index) => (
                             <motion.div
                                 key={index}
-                                className="flex flex-col items-center p-3 w-32 bg-gray-800 rounded-lg shadow-md hover:shadow-cyan-400 transition-all"
+                                className="flex flex-col items-center p-3 w-24 md:w-32 bg-gray-800 rounded-lg shadow-md hover:shadow-cyan-400 transition-all"
                                 whileHover={{ scale: 1.1 }}>
                                 <img
                                     src={tech.icon}
                                     alt={tech.name}
-                                    className="w-12 h-12"
+                                    className="w-10 md:w-12 h-10 md:h-12"
                                 />
-                                <p className="text-sm mt-2">{tech.name}</p>
+                                <p className="text-xs md:text-sm mt-2">
+                                    {tech.name}
+                                </p>
                                 <span className="text-xs text-gray-400">
                                     {tech.level}
                                 </span>
