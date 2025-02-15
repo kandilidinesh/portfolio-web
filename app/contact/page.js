@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { toast, Toaster } from "react-hot-toast"; // Import toast
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -10,6 +11,20 @@ export default function Contact() {
         message: ""
     });
     const [status, setStatus] = useState(null);
+    const [particles, setParticles] = useState([]);
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            // Generate particles on client only
+            const generatedParticles = Array.from({ length: 20 }, () => ({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                scale: Math.random() * 1.5 + 0.5, // Ensure minimum scale
+                id: Math.random()
+            }));
+            setParticles(generatedParticles);
+        }
+    }, []);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -27,11 +42,13 @@ export default function Contact() {
 
         if (res.ok) {
             setStatus("success");
+            toast.success("Message sent successfully!"); // Show success toast
             setFormData({ name: "", email: "", message: "" });
-            setTimeout(() => setStatus(null), 3000); // Auto-hide message
+            setTimeout(() => setStatus(null), 3000);
         } else {
             setStatus("error");
-            setTimeout(() => setStatus(null), 3000); // Auto-hide message
+            toast.error("Failed to send message. Try again!"); // Show error toast
+            setTimeout(() => setStatus(null), 3000);
         }
     };
 
@@ -43,33 +60,46 @@ export default function Contact() {
                 content="Get in touch with Dinesh K N via email, LinkedIn, or GitHub."
             />
 
+            {/* Toast Notification */}
+            <Toaster position="bottom-right" reverseOrder={false} />
+            {/* Animated Background */}
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                {particles.map((particle) => (
+                    <motion.div
+                        key={particle.id}
+                        className="absolute w-2 h-2 bg-cyan-400 rounded-full opacity-50"
+                        initial={{
+                            x: particle.x,
+                            y: particle.y,
+                            scale: particle.scale
+                        }}
+                        animate={{
+                            y: [particle.y, particle.y + 50, particle.y],
+                            x: [particle.x, particle.x + 50, particle.x],
+                            opacity: [0.4, 0.8, 0.4],
+                            scale: [0.8, 1.5, 0.8]
+                        }}
+                        transition={{
+                            duration: Math.random() * 4 + 3,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
+                ))}
+            </div>
+
             {/* Page Container */}
-            <div className="h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white flex flex-col justify-center items-center px-8 pt-20 relative">
-                {/* Page Title with Futuristic Animated Dot */}
+            <div className="h-screen flex flex-col justify-center items-center px-8 pt-20 relative text-white">
+                {/* Page Title */}
                 <motion.h1
                     className="text-4xl font-bold mb-6 neon-text flex items-center"
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}>
-                    Let&apos;s Connect
-                    <motion.span
-                        className="ml-1"
-                        animate={{
-                            opacity: [0.3, 1, 0.3], // Fading effect
-                            scale: [1, 1.3, 1], // Pulsating effect
-                            y: [0, -2, 0], // Slight floating movement
-                            color: ["#00E4FF", "#007BFF", "#9B51E0"] // Neon color transition
-                        }}
-                        transition={{
-                            repeat: Infinity, // Infinite loop
-                            duration: 1.5, // Smooth transitions
-                            ease: "easeInOut"
-                        }}>
-                        .
-                    </motion.span>
+                    Let&apos;s connect
                 </motion.h1>
 
-                {/* Floating Social Icons with Glow & Floating Effect */}
+                {/* Floating Social Icons */}
                 <motion.div
                     className="flex space-x-10 mb-6"
                     initial={{ opacity: 0, y: 20 }}
@@ -84,15 +114,7 @@ export default function Contact() {
                             scale: 1.2,
                             textShadow: "0px 0px 12px rgba(10, 102, 194, 0.8)"
                         }}
-                        whileTap={{ scale: 0.9 }}
-                        animate={{
-                            y: [0, -5, 0], // Floating effect
-                            transition: {
-                                repeat: Infinity,
-                                duration: 2,
-                                ease: "easeInOut"
-                            }
-                        }}>
+                        whileTap={{ scale: 0.9 }}>
                         <FaLinkedin />
                     </motion.a>
 
@@ -105,15 +127,7 @@ export default function Contact() {
                             scale: 1.2,
                             textShadow: "0px 0px 12px rgba(255, 255, 255, 0.8)"
                         }}
-                        whileTap={{ scale: 0.9 }}
-                        animate={{
-                            y: [0, -5, 0],
-                            transition: {
-                                repeat: Infinity,
-                                duration: 2,
-                                ease: "easeInOut"
-                            }
-                        }}>
+                        whileTap={{ scale: 0.9 }}>
                         <FaGithub />
                     </motion.a>
 
@@ -124,15 +138,7 @@ export default function Contact() {
                             scale: 1.2,
                             textShadow: "0px 0px 12px rgba(255, 87, 51, 0.8)"
                         }}
-                        whileTap={{ scale: 0.9 }}
-                        animate={{
-                            y: [0, -5, 0],
-                            transition: {
-                                repeat: Infinity,
-                                duration: 2,
-                                ease: "easeInOut"
-                            }
-                        }}>
+                        whileTap={{ scale: 0.9 }}>
                         <FaEnvelope />
                     </motion.a>
                 </motion.div>
@@ -153,7 +159,7 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full p-3 rounded mt-2 bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                        className="w-full p-3 rounded mt-2 bg-gray-800 text-white border border-gray-600 focus:ring-cyan-400"
                     />
 
                     <label className="block text-sm font-bold mt-4 text-gray-300">
@@ -165,7 +171,7 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full p-3 rounded mt-2 bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                        className="w-full p-3 rounded mt-2 bg-gray-800 text-white border border-gray-600 focus:ring-cyan-400"
                     />
 
                     <label className="block text-sm font-bold mt-4 text-gray-300">
@@ -176,10 +182,9 @@ export default function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className="w-full p-3 rounded mt-2 bg-gray-800 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-cyan-400 h-32"
+                        className="w-full p-3 rounded mt-2 bg-gray-800 text-white border border-gray-600 focus:ring-cyan-400 h-32"
                     />
 
-                    {/* Submit Button with Animation */}
                     <motion.button
                         type="submit"
                         className="mt-6 w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-blue-500 hover:to-cyan-500 py-3 rounded text-white font-bold text-lg shadow-md transition-all"
@@ -190,28 +195,6 @@ export default function Contact() {
                         {status === "loading" ? "Sending..." : "Send Message"}
                     </motion.button>
                 </motion.form>
-
-                {/* Floating Success/Error Messages (Moved Outside the Form) */}
-                {status === "success" && (
-                    <motion.div
-                        className="fixed bottom-5 right-5 bg-green-500 text-white py-3 px-6 rounded-lg shadow-lg"
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 50 }}
-                        transition={{ duration: 0.5 }}>
-                        Message sent successfully! 🎉
-                    </motion.div>
-                )}
-                {status === "error" && (
-                    <motion.div
-                        className="fixed bottom-5 right-5 bg-red-500 text-white py-3 px-6 rounded-lg shadow-lg"
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: 50 }}
-                        transition={{ duration: 0.5 }}>
-                        Something went wrong! ❌
-                    </motion.div>
-                )}
             </div>
         </>
     );
