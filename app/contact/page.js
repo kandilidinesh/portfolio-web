@@ -121,7 +121,7 @@ export default function Contact() {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}>
-                    Let&apos;s Connect.
+                    Let&apos;s connect
                 </motion.h1>
 
                 {/* Social Links */}
