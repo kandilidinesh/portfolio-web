@@ -88,9 +88,9 @@ export default function Projects() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6 }}>
                 <div className="w-full max-w-[1400px] mx-auto">
-                    {/* First Row: 3 projects */}
+                    {/* First Row: 3 projects - Uniform Layout */}
                     <motion.div
-                        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start w-full"
                         initial="hidden"
                         animate="visible"
                         variants={{
@@ -103,18 +103,18 @@ export default function Projects() {
                         {projects.slice(0, 3).map((project, index) => (
                             <motion.div
                                 key={index}
-                                className="project-card p-6 rounded-lg shadow-lg transition-transform"
+                                className="project-card p-6 rounded-lg shadow-lg transition-transform flex flex-col justify-between h-full"
                                 variants={{
                                     hidden: { opacity: 0, y: 50 },
                                     visible: { opacity: 1, y: 0 }
                                 }}
                                 transition={{ duration: 0.6, ease: "easeOut" }}
                                 whileHover={{ scale: 1.05 }}>
-                                <div className="max-w-lg">
+                                <div className="max-w-lg flex flex-col flex-grow">
                                     <h2 className="text-xl font-bold">
                                         {project.title}
                                     </h2>
-                                    <p className="mt-2 text-gray-300">
+                                    <p className="mt-2 text-gray-300 flex-grow">
                                         {project.description}
                                     </p>
                                     <div className="mt-3 flex flex-wrap gap-2">
@@ -135,9 +135,9 @@ export default function Projects() {
                         ))}
                     </motion.div>
 
-                    {/* Second Row: 2 projects centered */}
+                    {/* Second Row: 2 projects - Centered and Uniform */}
                     <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center mx-auto mt-8 w-full md:max-w-[900px]"
+                        className="grid grid-cols-1 md:grid-cols-2 gap-8 justify-center mx-auto mt-8 w-full md:max-w-[900px] items-stretch"
                         initial="hidden"
                         animate="visible"
                         variants={{
@@ -150,18 +150,18 @@ export default function Projects() {
                         {projects.slice(3, 5).map((project, index) => (
                             <motion.div
                                 key={index}
-                                className="project-card p-6 rounded-lg shadow-lg transition-transform"
+                                className="project-card p-6 rounded-lg shadow-lg transition-transform flex flex-col justify-between h-full"
                                 variants={{
                                     hidden: { opacity: 0, y: 50 },
                                     visible: { opacity: 1, y: 0 }
                                 }}
                                 transition={{ duration: 0.6, ease: "easeOut" }}
                                 whileHover={{ scale: 1.05 }}>
-                                <div className="max-w-lg">
+                                <div className="max-w-lg flex flex-col flex-grow">
                                     <h2 className="text-xl font-bold">
                                         {project.title}
                                     </h2>
-                                    <p className="mt-2 text-gray-300">
+                                    <p className="mt-2 text-gray-300 flex-grow">
                                         {project.description}
                                     </p>
                                     <div className="mt-3 flex flex-wrap gap-2">
