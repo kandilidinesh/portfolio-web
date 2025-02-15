@@ -20,16 +20,20 @@ export default function Navbar() {
     }, []);
 
     return (
-        <nav className={scrolled ? "scrolled" : ""}>
-            <div className="container mx-auto flex justify-between items-center px-6">
+        <nav
+            className={`fixed top-0 left-0 w-full transition-all duration-300 ${
+                scrolled ? "bg-opacity-90 backdrop-blur-md" : "bg-transparent"
+            }`}
+            style={{ height: "60px" }}>
+            <div className="container mx-auto flex justify-between items-center px-6 h-full">
                 {/* Logo */}
                 <Link href="/" className="flex items-center">
                     <Image
-                        src="/icons/logo.png"
+                        src="/favico.svg"
                         alt="Dinesh K N Logo"
-                        width={45}
-                        height={25}
-                        className="nav-logo"
+                        width={40}
+                        height={40}
+                        className="nav-logo transition-transform duration-300 transform hover:scale-110"
                     />
                 </Link>
 
@@ -46,11 +50,11 @@ export default function Navbar() {
                                 <Link
                                     key={index}
                                     href={itemPath}
-                                    className={`group transition duration-300 ${
+                                    className={`group transition duration-300 text-sm ${
                                         isActive
                                             ? "text-[#00ffc3]"
                                             : "text-gray-300"
-                                    } hover:text-[#00ffc3]`}>
+                                    } hover:text-[#00ffc3] relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-[#00ffc3] after:bottom-[-5px] after:left-0 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300`}>
                                     {item}
                                 </Link>
                             );
