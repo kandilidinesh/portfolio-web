@@ -48,8 +48,21 @@ export default function Home() {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext("2d");
 
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        let animationFrameId;
+
+        const resizeCanvas = () => {
+            const newWidth = window.innerWidth;
+            const newHeight = window.innerHeight;
+
+            if (canvas.width !== newWidth || canvas.height !== newHeight) {
+                canvas.width = newWidth;
+                canvas.height = newHeight;
+                starsRef.current = generateStars(150);
+            }
+        };
+
+        // Initialize Canvas Size Once
+        resizeCanvas();
 
         const animateStars = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -64,30 +77,38 @@ export default function Home() {
                 ctx.fill();
             });
 
-            requestAnimationFrame(animateStars);
+            animationFrameId = requestAnimationFrame(animateStars);
         };
 
         animateStars();
 
-        window.addEventListener("resize", () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            starsRef.current = generateStars(150);
-        });
-
-        // Mouse move event for glow effect
-        const handleMouseMove = (e) => {
-            if (glowRef.current) {
-                const glowSize = 100; // Keep it same as CSS
-                glowRef.current.style.left = `${e.clientX - glowSize / 2}px`;
-                glowRef.current.style.top = `${e.clientY - glowSize / 2}px`;
-            }
+        let resizeTimeout;
+        const handleResize = () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                resizeCanvas();
+            }, 200); // Debounce resize to avoid excessive updates
         };
 
-        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("resize", handleResize);
+
+        // Smooth Mobile Scrolling Behavior
+        let lastScrollY = window.scrollY;
+        window.addEventListener("scroll", () => {
+            const currentScrollY = window.scrollY;
+            if (Math.abs(currentScrollY - lastScrollY) > 50) {
+                // Reduce speed of movement during fast scrolls
+                starsRef.current.forEach((star) => {
+                    star.speed = Math.max(0.5, star.speed * 0.8); // Prevent particles from accelerating too much
+                });
+            }
+            lastScrollY = currentScrollY;
+        });
 
         return () => {
-            window.removeEventListener("mousemove", handleMouseMove);
+            window.removeEventListener("resize", handleResize);
+            window.removeEventListener("scroll", () => {});
+            cancelAnimationFrame(animationFrameId);
         };
     }, []);
 

@@ -63,7 +63,7 @@ export default function Contact() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
                     style={{ willChange: "transform, opacity" }}>
-                    Let&apos;s Connect
+                    Let&apos;s connect
                 </motion.h1>
 
                 {/* Social Links */}
