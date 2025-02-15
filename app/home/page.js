@@ -40,7 +40,7 @@ export default function Home() {
     const glowRef = useRef(null);
 
     const tagline = useTypingEffect(
-        "Backend Developer | Cloud | JavaScript | Node.js",
+        "Backend | Cloud | JavaScript | Node.js",
         80
     );
 
