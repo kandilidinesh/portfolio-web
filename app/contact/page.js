@@ -69,7 +69,7 @@ export default function Contact() {
             <Toaster position="bottom-right" reverseOrder={false} />
 
             {/* Background */}
-            <div className="absolute inset-0 pointer-events-none bg-black overflow-hidden">
+            <div className="absolute top-0 left-0 w-full min-h-screen pointer-events-none bg-black overflow-hidden">
                 {/* Soft Glowing Effect */}
                 <motion.div
                     className="absolute inset-0 opacity-30"
@@ -102,11 +102,17 @@ export default function Contact() {
                             }px rgba(0, 255, 255, 0.3)`
                         }}
                         animate={{
-                            y: [particle.y, particle.y - 40, particle.y],
+                            y: [
+                                particle.y,
+                                particle.y - (isMobile ? 20 : 40),
+                                particle.y
+                            ], // Reduce movement on mobile
                             opacity: [0.3, 0.6, 0.3]
                         }}
                         transition={{
-                            duration: Math.random() * 6 + 2,
+                            duration: isMobile
+                                ? Math.random() * 4 + 2
+                                : Math.random() * 6 + 2, // Faster duration for mobile
                             repeat: Infinity,
                             ease: "easeInOut"
                         }}
@@ -115,21 +121,30 @@ export default function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div className="h-screen flex flex-col justify-center items-center px-8 pt-20 relative text-white">
+            <div className="min-h-screen flex flex-col justify-center items-center px-8 pt-20 relative text-white">
+                {" "}
                 <motion.h1
                     className="text-4xl font-bold mb-6 flex items-center neon-text"
-                    initial={{ opacity: 0, y: -20 }}
+                    initial={{ opacity: 0, y: -15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}>
-                    Let&apos;s connect
+                    transition={{
+                        duration: isMobile ? 1.2 : 0.8, // Smoother transition for mobile
+                        ease: "easeOut"
+                    }}
+                    style={{ willChange: "transform, opacity" }} // Optimized for performance
+                >
+                    Let&apos;s Connect
                 </motion.h1>
-
                 {/* Social Links */}
                 <motion.div
                     className="flex space-x-8 mb-6"
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}>
+                    transition={{
+                        duration: isMobile ? 1.1 : 0.7, // Make animation slightly longer on mobile
+                        ease: "easeOut"
+                    }}
+                    style={{ willChange: "transform, opacity" }}>
                     <a
                         href="https://www.linkedin.com/in/kandili/"
                         target="_blank"
@@ -150,7 +165,6 @@ export default function Contact() {
                         <FaEnvelope />
                     </a>
                 </motion.div>
-
                 {/* Restored Original Form with Cyberpunk Neon Glow */}
                 <motion.form
                     onSubmit={handleSubmit}
