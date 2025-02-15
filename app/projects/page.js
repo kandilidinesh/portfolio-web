@@ -103,7 +103,7 @@ export default function Projects() {
                         {projects.slice(0, 3).map((project, index) => (
                             <motion.div
                                 key={index}
-                                className="glass-card p-6 rounded-lg shadow-lg transition-transform"
+                                className="project-card p-6 rounded-lg shadow-lg transition-transform"
                                 variants={{
                                     hidden: { opacity: 0, y: 50 },
                                     visible: { opacity: 1, y: 0 }
@@ -150,7 +150,7 @@ export default function Projects() {
                         {projects.slice(3, 5).map((project, index) => (
                             <motion.div
                                 key={index}
-                                className="glass-card p-6 rounded-lg shadow-lg transition-transform"
+                                className="project-card p-6 rounded-lg shadow-lg transition-transform"
                                 variants={{
                                     hidden: { opacity: 0, y: 50 },
                                     visible: { opacity: 1, y: 0 }
