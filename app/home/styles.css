@@ -1,34 +1,15 @@
-/* Base Container */
 .home-container {
     position: relative;
     min-height: 100vh;
-    overflow: hidden;
+    height: auto; /* Allows it to expand with content */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-/* Starry Background */
-.starry-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-/* Hero Title */
-.hero-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #00eaff;
     text-align: center;
-    z-index: 10;
+    overflow-x: hidden; /* Prevents unwanted scrolling issues */
 }
 
-/* Hero Subtitle */
 .hero-subtitle {
     margin-top: 10px;
     font-size: 1.2rem;
@@ -37,50 +18,49 @@
     z-index: 10;
 }
 
-/* Mouse Glow Effect */
-.mouse-glow {
+.snowfall-background {
     position: fixed;
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(
-        circle,
-        rgba(0, 255, 255, 0.3),
-        rgba(0, 255, 255, 0)
-    );
-    border-radius: 50%;
-    pointer-events: none;
-    filter: blur(40px);
-    z-index: 9999;
-    transition: transform 0.05s linear;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+    min-height: 100vh; /* Ensures it covers the full page, even on scroll */
+    z-index: -1;
+    background-color: #0a0a0a; /* Dark background to avoid empty space */
+    overscroll-behavior: contain; /* Prevents rubber-band effect from revealing empty space */
 }
 
-/* Overlay Effect */
-.overlay {
+.hero-title {
+    position: relative;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #00eaff;
+    text-shadow: 0px 0px 15px #00eaff;
+}
+
+.snow-landing {
+    display: inline-block;
+    position: relative;
+}
+
+.snow-landing::before {
+    content: "❄️";
     position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 0;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: fall 2s infinite;
 }
 
-/* Thunder Icon */
-.thunder-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 5px;
-    vertical-align: middle;
-    width: 30px;
-    height: 30px;
-    animation: thunder-flash 0.8s infinite alternate;
-}
-
-@keyframes thunder-flash {
+@keyframes fall {
     0% {
-        stroke: #00eaff;
-        transform: scale(1);
+        transform: translateY(-10px) translateX(-50%) rotate(0deg);
+    }
+    50% {
+        transform: translateY(10px) translateX(-50%) rotate(180deg);
     }
     100% {
-        stroke: #ffcc00;
-        transform: scale(1.2);
+        transform: translateY(-10px) translateX(-50%) rotate(360deg);
     }
 }

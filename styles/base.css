@@ -23,9 +23,8 @@
     }
 }
 
-/* Global Styles */
 body {
-    color: var(--foreground);
-    background: var(--background);
+    background: linear-gradient(to bottom, #0b0c10, #1f2833);
+    color: #ffffff;
     font-family: var(--primary-font);
 }
