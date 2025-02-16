@@ -1,38 +1,62 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./styles.css";
-
-const generateSnowflakes = (count) => {
-    if (typeof window === "undefined") return [];
-
-    return Array.from({ length: count }).map(() => ({
-        x: Math.random() * window.innerWidth,
-        y: Math.random() * window.innerHeight,
-        size: Math.random() * 4 + 2,
-        speed: Math.random() * 1.5 + 0.5
-    }));
-};
 
 export default function Home() {
     const canvasRef = useRef(null);
-    const snowflakesRef = useRef(generateSnowflakes(100));
+    const text = "One line of code at a time";
+    const [typedText, setTypedText] = useState("");
+    const [cursorVisible, setCursorVisible] = useState(true);
+    const [showSubtitle, setShowSubtitle] = useState(false);
+
+    useEffect(() => {
+        let i = 0;
+        const interval = setInterval(() => {
+            if (i <= text.length) {
+                setTypedText(text.substring(0, i));
+                i++;
+            } else {
+                clearInterval(interval);
+                setShowSubtitle(true);
+            }
+        }, 100); // Adjust typing speed
+
+        const cursorBlink = setInterval(() => {
+            setCursorVisible((prev) => !prev);
+        }, 500); // Cursor blinking speed
+
+        return () => {
+            clearInterval(interval);
+            clearInterval(cursorBlink);
+        };
+    }, []);
 
     useEffect(() => {
         const canvas = canvasRef.current;
+        if (!canvas) return;
+
         const ctx = canvas.getContext("2d");
         let animationFrameId;
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            snowflakesRef.current = generateSnowflakes(100);
+            canvas.height = document.body.scrollHeight; // Ensure full height coverage
         };
+
+        resizeCanvas();
+
+        const snowflakes = Array.from({ length: 100 }).map(() => ({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 4 + 2,
+            speed: Math.random() * 1.5 + 0.5
+        }));
 
         const animateSnow = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = "white";
 
-            snowflakesRef.current.forEach((flake) => {
+            snowflakes.forEach((flake) => {
                 flake.y += flake.speed;
                 flake.x += Math.sin(flake.y * 0.02) * 0.5;
 
@@ -49,7 +73,6 @@ export default function Home() {
             animationFrameId = requestAnimationFrame(animateSnow);
         };
 
-        resizeCanvas();
         animateSnow();
 
         window.addEventListener("resize", resizeCanvas);
@@ -69,15 +92,22 @@ export default function Home() {
                     ref={canvasRef}
                     className="snowfall-background"></canvas>
 
-                {/* Hero Title (Removed Snowflake Effect Here) */}
+                {/* Terminal Typing Effect with Blinking Cursor */}
                 <h1 className="hero-title">
-                    One Line of Code at a Time
+                    <span className="terminal-text">{typedText}</span>
+                    <span
+                        className={`cursor ${
+                            cursorVisible ? "blink" : ""
+                        }`}></span>
                 </h1>
 
-                {/* Subtitle */}
-                <p className="hero-subtitle">
-                    Backend | Cloud | JavaScript | Node.js
-                </p>
+                <div className="subtitle-container">
+                    {showSubtitle && (
+                        <p className="hero-subtitle">
+                            Backend | Cloud | JavaScript | Node.js
+                        </p>
+                    )}
+                </div>
             </div>
         </>
     );
