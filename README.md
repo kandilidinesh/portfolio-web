@@ -49,4 +49,4 @@ Feel free to fork this repository, open issues, or submit pull requests to impro
 ## License
 This project is licensed under the MIT License.
 
-Thank you for visiting! 🚀
+Thank you for visiting! :)
