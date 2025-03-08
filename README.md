@@ -3,7 +3,7 @@
 This repository contains the source code for my personal portfolio website, showcasing my skills, experience, and projects.
 
 ## Live Website
-Visit: **[Dinesh K N Portfolio](https://www.dineshkn.site/)**
+Visit: **[My Portfolio](https://www.dineshkn.site/)**
 
 ## Tech Stack
 - **Frontend:** React.js, Next.js, Tailwind CSS
@@ -22,8 +22,8 @@ To run this project locally, follow these steps:
 
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/your-github-username/your-portfolio-repo.git
-   cd your-portfolio-repo
+   git clone https://github.com/kandilidinesh/portfolio-web.git
+   cd portfolio-web
    ```
 
 2. **Install dependencies**
@@ -40,9 +40,8 @@ To run this project locally, follow these steps:
    Go to [http://localhost:3000](http://localhost:3000) to view it locally.
 
 ## Contact
-- **Email:** [your-email@example.com](mailto:your-email@example.com)
-- **LinkedIn:** [linkedin.com/in/dineshkn](https://www.linkedin.com/in/dineshkn)
-- **GitHub:** [github.com/dineshkn](https://github.com/dineshkn)
+- **Email:** [kandilindinesh@gmail.com](mailto:kandilindinesh@gmail.com)
+- **LinkedIn:** [linkedin.com/in/kandili](https://www.linkedin.com/in/kandili)
 
 ## Contributing
 Feel free to fork this repository, open issues, or submit pull requests to improve the portfolio.
