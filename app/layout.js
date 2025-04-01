@@ -1,6 +1,7 @@
 import "@/globals.css";
 import Navbar from "@/components/Navbar";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
     icons: {
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
                     {children}
                 </main>
                 <Analytics />
+                <SpeedInsights />
             </body>
         </html>
     );
